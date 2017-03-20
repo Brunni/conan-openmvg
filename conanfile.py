@@ -64,6 +64,10 @@ conan_basic_setup()''')
 	def package(self):
 		self.copy("*.hpp", dst="include/openMVG", src="openMVG/src/openMVG")
 		self.copy("*.h", dst="include/openMVG", src="openMVG/src/openMVG")
+		self.copy("*.hpp", dst="include", src="openMVG/src/dependencies/cereal/include") #ceres
+		self.copy("*.h", dst="include", src="openMVG/src/dependencies/cereal/include") #ceres
+		self.copy("*.hpp", dst="include/third_party", src="openMVG/src/third_party") #third party
+		self.copy("*.h", dst="include/third_party", src="openMVG/src/third_party") #third party
 		self.copy("*.lib", dst="lib", keep_path=False)
 		self.copy("*.exp", dst="lib", src="Release", keep_path=False)
 		self.copy("*.dll", dst="bin", src="Release", keep_path=False) #shared lib

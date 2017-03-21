@@ -66,8 +66,14 @@ conan_basic_setup()''')
 		self.copy("*.h", dst="include/openMVG", src="openMVG/src/openMVG")
 		self.copy("*.hpp", dst="include", src="openMVG/src/dependencies/cereal/include") #ceres
 		self.copy("*.h", dst="include", src="openMVG/src/dependencies/cereal/include") #ceres
-		self.copy("*.hpp", dst="include/third_party", src="openMVG/src/third_party") #third party
-		self.copy("*.h", dst="include/third_party", src="openMVG/src/third_party") #third party
+		self.copy("*.hpp", dst="include", src="openMVG/src/dependencies/osi_clp/CoinUtils/src") #ceres
+		self.copy("*.h", dst="include", src="openMVG/src/dependencies/osi_clp/CoinUtils/src") #ceres
+		self.copy("*.hpp", dst="include/third_party/stlplus3", src="openMVG/src/third_party/stlplus3/") #third party stlplus3
+		self.copy("*.h", dst="include/third_party/stlplus3", src="openMVG/src/third_party/stlplus3") #third party stlplus3
+		self.copy("*.hpp", dst="include/lemon", src="openMVG/src/third_party/lemon/lemon") #third party lemon
+		self.copy("*.h", dst="include/lemon", src="openMVG/src/third_party/lemon/lemon") #third party lemon
+		self.copy("*.hpp", dst="include", src="openMVG/src/third_party/ceres-solver/include") #third party ceres
+		self.copy("*.h", dst="include", src="openMVG/src/third_party/ceres-solver/include") #third party ceres
 		self.copy("*.lib", dst="lib", keep_path=False)
 		self.copy("*.exp", dst="lib", src="Release", keep_path=False)
 		self.copy("*.dll", dst="bin", src="Release", keep_path=False) #shared lib

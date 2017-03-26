@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, CMake, tools, AutoToolsBuildEnvironment
 import os
 
 class OpenMvgConan(ConanFile):
@@ -59,7 +59,13 @@ conan_basic_setup()''')
 		cmake_opts += "-DSCHUR_SPECIALIZATIONS=OFF "
 		self.run('cmake %s/openMVG/src %s %s' % (self.conanfile_directory, cmake.command_line, cmake_opts))
 		# We need to prevent to build static library as well when building shared. It might overwrite the lib file!
-		self.run("cmake --build . %s " % cmake.build_config)
+		if self.settings.os == "Windows":
+			build_opts = ""
+		else:
+			build_opts = "-- -j%s" % (tools.cpu_count()+1)
+		self.output.warn("Build options are: %s" % build_opts)
+		self.run("cmake --build . %s %s" % (cmake.build_config, build_opts))
+
 
 	def package(self):
 		self.copy("*.hpp", dst="include/openMVG", src="openMVG/src/openMVG")
